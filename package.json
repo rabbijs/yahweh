@@ -17,8 +17,10 @@
   },
   "homepage": "https://github.com/rabbijs/yahweh#readme",
   "dependencies": {
+    "commander": "^4.1.0",
     "hapi": "^18.1.0",
     "rabbi": "^1.9.1",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "systeminformation": "^4.19.4"
   }
 }
