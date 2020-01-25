@@ -1,0 +1,24 @@
+{
+  "name": "yahweh",
+  "version": "0.1.0",
+  "description": "Chief supervisor among a network of Rabbis",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rabbijs/yahweh.git"
+  },
+  "author": "Steven G Zeiler",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/rabbijs/yahweh/issues"
+  },
+  "homepage": "https://github.com/rabbijs/yahweh#readme",
+  "dependencies": {
+    "hapi": "^18.1.0",
+    "rabbi": "^1.9.1",
+    "socket.io": "^2.3.0"
+  }
+}
