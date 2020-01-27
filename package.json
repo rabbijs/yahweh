@@ -1,10 +1,10 @@
 {
   "name": "yahweh",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Chief supervisor among a network of Rabbis",
   "main": "index.js",
   "bin": {
-    "yahweh": "./dist/bin/yahweh.js"
+    "yahweh": "./bin/yahweh.ts"
   },
   "scripts": {
     "app:dev": "cd yahweh-admin && ember build --environment=development",
