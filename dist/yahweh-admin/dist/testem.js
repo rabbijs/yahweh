@@ -17,4 +17,3 @@
  * Hence the purpose of this fake file. This file is served
  * directly from the express server to satisify the script load.
  */
-//# sourceMappingURL=testem.js.map
