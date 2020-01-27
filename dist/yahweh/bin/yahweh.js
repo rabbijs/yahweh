@@ -10,7 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 require('dotenv').config();
-const rabbi_1 = require("rabbi");
+const rabbi_1 = require("../../rabbi");
 const Hapi = require("hapi");
 const path_1 = require("path");
 const Inert = require('inert');

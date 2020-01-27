@@ -1,12 +1,13 @@
 {
   "name": "yahweh",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Chief supervisor among a network of Rabbis",
   "main": "index.js",
   "bin": {
-    "yahweh": "./bin/yahweh.ts"
+    "yahweh": "./dist/bin/yahweh.js"
   },
   "scripts": {
+    "start": "./bin/yahweh.ts",
     "app:dev": "cd yahweh-admin && ember build --environment=development",
     "app:prod": "cd yahweh-admin && ember build --environment=production"
   },
@@ -21,10 +22,11 @@
   },
   "homepage": "https://github.com/rabbijs/yahweh#readme",
   "dependencies": {
+    "@types/node": "^13.5.0",
     "commander": "^4.1.0",
     "hapi": "^18.1.0",
     "inert": "^5.1.3",
-    "rabbi": "^1.10.8",
+    "rabbi": "^1.10.10",
     "socket.io": "^2.3.0",
     "systeminformation": "^4.19.4"
   }
