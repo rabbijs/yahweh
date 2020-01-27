@@ -67,7 +67,7 @@ function start() {
             routes: {
                 cors: true,
                 files: {
-                    relativeTo: path_1.join(__dirname, '../yahweh-admin/dist')
+                    relativeTo: path_1.join(__dirname, '../../yahweh-admin/dist')
                 }
             }
         });

@@ -1,8 +1,11 @@
 {
   "name": "yahweh",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Chief supervisor among a network of Rabbis",
   "main": "index.js",
+  "bin": {
+    "yahweh": "./dist/bin/yahweh.js"
+  },
   "scripts": {
     "app:dev": "cd yahweh-admin && ember build --environment=development",
     "app:prod": "cd yahweh-admin && ember build --environment=production"
