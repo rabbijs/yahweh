@@ -15,9 +15,27 @@ const Hapi = require("hapi");
 const path_1 = require("path");
 const Inert = require('inert');
 const actors_1 = require("../lib/actors");
+function checkExchange(channel, exchange) {
+    return new Promise((resolve, reject) => {
+        channel.checkExchange(exchange, (err, ok) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(ok);
+        });
+    });
+}
 function start() {
     return __awaiter(this, void 0, void 0, function* () {
         let channel = yield rabbi_1.getChannel();
+        yield channel.assertExchange('rabbi', 'topic');
+        try {
+            //await checkExchange(channel, 'rabbi');
+            console.log('exchange found');
+        }
+        catch (error) {
+            throw new Error('exchange not found');
+        }
         let actor = rabbi_1.Actor.create({
             exchange: 'rabbi',
             routingkey: 'actor.started',

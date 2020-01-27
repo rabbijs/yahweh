@@ -1,6 +1,6 @@
 {
   "name": "yahweh",
-  "version": "0.2.5",
+  "version": "0.2.6",
   "description": "Chief supervisor among a network of Rabbis",
   "main": "index.js",
   "bin": {

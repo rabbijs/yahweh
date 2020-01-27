@@ -12,9 +12,38 @@ const Inert = require('inert');
 
 import { actorHeartbeat, actorStarted, actorStopped, actorError, listHosts, listActors } from '../lib/actors';
 
+function checkExchange(channel, exchange) {
+
+  return new Promise((resolve, reject) => {
+
+    channel.checkExchange(exchange, (err, ok) => {
+
+      if (err) { return reject(err) }
+
+      resolve(ok);
+    
+    });
+
+  });
+
+}
+
 async function start() {
 
   let channel = await getChannel();
+
+  await channel.assertExchange('rabbi', 'topic');
+
+  try {
+
+    //await checkExchange(channel, 'rabbi');
+
+    console.log('exchange found');
+
+  } catch(error) {
+
+    throw new Error('exchange not found');
+  }
 
   let actor = Actor.create({
 
