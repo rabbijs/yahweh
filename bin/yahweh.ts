@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 
-import { Actor, getChannel, log } from '../../rabbi';
+import { Actor, getChannel, log } from 'rabbi';
 
 import * as Hapi from 'hapi';
 

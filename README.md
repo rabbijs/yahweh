@@ -24,3 +24,9 @@ Yahweh optionally loads environment variables from /etc/yahweh/yahweh.env
 
 Set the `AMQP_URL` environment variable to connect to your AMQP cluster.
 
+## Sysadmin CLI
+
+```
+npm install -g yahweh-cli
+```
+

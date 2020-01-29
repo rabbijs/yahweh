@@ -1,10 +1,11 @@
 {
   "name": "yahweh",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "description": "Chief supervisor among a network of Rabbis",
   "main": "index.js",
   "bin": {
-    "yahweh": "./dist/bin/yahweh.js"
+    "yahweh": "./dist/bin/yahweh.js",
+    "yahweh-cli": "./dist/bin/yahweh-cli.js"
   },
   "scripts": {
     "start": "./bin/yahweh.ts",
@@ -25,6 +26,7 @@
   "dependencies": {
     "@types/node": "^13.5.0",
     "commander": "^4.1.0",
+    "datapay": "0.0.19",
     "hapi": "^18.1.0",
     "inert": "^5.1.3",
     "rabbi": "^1.10.10",
