@@ -30,3 +30,19 @@ Set the `AMQP_URL` environment variable to connect to your AMQP cluster.
 npm install -g yahweh-cli
 ```
 
+```
+> ./bin/yahweh-cli.ts --help
+
+Usage: yahweh-cli.ts [options] [command]
+
+Options:
+  -h, --help                                      output usage information
+
+Commands:
+  create_supervisor
+  add_supervisor <supervisor_address>
+  remove_supervisor <supervisor_address>
+  add_actor <supervisor_address> <actor_name>
+  remove_actor <supervisor_address> <actor_name>
+```
+
