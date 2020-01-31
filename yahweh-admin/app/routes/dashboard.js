@@ -18,7 +18,7 @@ export default Ember.Route.extend({
     };
     return Ember.$.ajax({
       method: 'GET',
-      url: `/api/hosts`,
+      url: `https://yahweh.anypayinc.com/api/hosts`,
       headers: headers
     });
   },
