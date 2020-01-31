@@ -70,6 +70,15 @@ export async function actorHeartbeat(actorHeartbeatEvent: any) {
 
 }
 
+export async function getHost(ip) {
+
+  return {
+    ip,
+    actors: Object.values(hosts[ip])
+  }
+
+}
+
 export async function listHosts() {
 
   return Object.keys(hosts).map(ip => {

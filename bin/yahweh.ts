@@ -10,7 +10,8 @@ import { join } from 'path';
 
 const Inert = require('inert');
 
-import { actorHeartbeat, actorStarted, actorStopped, actorError, listHosts, listActors } from '../lib/actors';
+import { actorHeartbeat, actorStarted, actorStopped, actorError, listHosts, getHost, listActors } from '../lib/actors';
+import { handleSystemInfo, listSystemInfos, getSystemInfo, systemInfos } from '../lib/systeminfo';
 
 function checkExchange(channel, exchange) {
 
@@ -60,6 +61,23 @@ async function start() {
     //log.info(JSON.stringify(json));
 
     actorStarted(json);
+
+    channel.ack(msg);
+
+  });
+
+  Actor.create({
+
+    exchange: 'rabbi',
+
+    routingkey: 'gabbai.systeminfo',
+
+    queue: 'yahweh_handle_gabbai_systeminfo'
+
+  })
+  .start(async (channel, msg, json) => {
+
+    handleSystemInfo(json);
 
     channel.ack(msg);
 
@@ -192,13 +210,36 @@ async function start() {
 
   server.route({
     method: 'GET',
-    path: '/api/dashboard',
+    path: '/api/hosts',
     handler: async (request, h) => {
 
       let hosts = await listHosts();
       let actors = await listActors();
 
-      return { hosts, actors }
+      hosts = hosts.map(host => {
+
+        return Object.assign(host, systemInfos[host.ip]);
+
+      });
+
+      return { hosts }
+
+    },
+    config: {
+      auth: 'yahweh'
+    }
+  });
+
+  server.route({
+    method: 'GET',
+    path: '/api/hosts/{ip}',
+    handler: async (request, h) => {
+
+      let { actors } = await getHost(request.params.ip);
+
+      let systeminfo = await getSystemInfo(request.params.ip);
+
+      return { actors, systeminfo }
 
     },
     config: {

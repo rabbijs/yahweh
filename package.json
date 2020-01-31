@@ -1,6 +1,6 @@
 {
   "name": "yahweh",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Chief supervisor among a network of Rabbis",
   "main": "index.js",
   "bin": {
@@ -9,6 +9,7 @@
   },
   "scripts": {
     "start": "./bin/yahweh.ts",
+    "app:start": "cd yahweh-admin && ember server --environment=development",
     "app:dev": "cd yahweh-admin && ember build --environment=development",
     "app:prod": "cd yahweh-admin && ember build --environment=production",
     "build": "cd yahweh-admin && ember build --environment=development && cd .. && rm -rf dist/yahweh-admin/dist && cp -r yahweh-admin/dist dist/yahweh-admin"
