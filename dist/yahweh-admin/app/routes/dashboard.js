@@ -14,14 +14,26 @@ exports.default = ember_1.default.Route.extend({
         };
         return ember_1.default.$.ajax({
             method: 'GET',
-            url: `${environment_1.default.apiEndpoint}/api/dashboard`,
+            url: `${environment_1.default.apiEndpoint}/api/hosts`,
             headers: headers
         });
     },
     setupController(controller, model) {
         console.log(model);
-        controller.set('hosts', model.hosts);
-        controller.set('actors', model.actors);
+        controller.set('hosts', model.hosts.map(host => {
+            if (!host.mem) {
+                return host;
+            }
+            let mem = Object.assign(host.mem, {
+                percent_used: ((parseInt(host.mem.used) / parseInt(host.mem.total)) * 100).toFixed(2)
+            });
+            let fs = host.fs[0];
+            let disk = Object.assign(fs, {
+                percent_used: ((fs.used / fs.size) * 100).toFixed(2)
+            });
+            console.log('disk', disk);
+            return Object.assign(host, { disk });
+        }));
     }
 });
 //# sourceMappingURL=dashboard.js.map

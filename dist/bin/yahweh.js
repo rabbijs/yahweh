@@ -15,6 +15,7 @@ const Hapi = require("hapi");
 const path_1 = require("path");
 const Inert = require('inert');
 const actors_1 = require("../lib/actors");
+const systeminfo_1 = require("../lib/systeminfo");
 function checkExchange(channel, exchange) {
     return new Promise((resolve, reject) => {
         channel.checkExchange(exchange, (err, ok) => {
@@ -45,6 +46,15 @@ function start() {
             console.log('actor.started', json);
             //log.info(JSON.stringify(json));
             actors_1.actorStarted(json);
+            channel.ack(msg);
+        }));
+        rabbi_1.Actor.create({
+            exchange: 'rabbi',
+            routingkey: 'gabbai.systeminfo',
+            queue: 'yahweh_handle_gabbai_systeminfo'
+        })
+            .start((channel, msg, json) => __awaiter(this, void 0, void 0, function* () {
+            systeminfo_1.handleSystemInfo(json);
             channel.ack(msg);
         }));
         rabbi_1.Actor.create({
@@ -120,11 +130,26 @@ function start() {
             } });
         server.route({
             method: 'GET',
-            path: '/api/dashboard',
+            path: '/api/hosts',
             handler: (request, h) => __awaiter(this, void 0, void 0, function* () {
                 let hosts = yield actors_1.listHosts();
                 let actors = yield actors_1.listActors();
-                return { hosts, actors };
+                hosts = hosts.map(host => {
+                    return Object.assign(host, systeminfo_1.systemInfos[host.ip]);
+                });
+                return { hosts };
+            }),
+            config: {
+                auth: 'yahweh'
+            }
+        });
+        server.route({
+            method: 'GET',
+            path: '/api/hosts/{ip}',
+            handler: (request, h) => __awaiter(this, void 0, void 0, function* () {
+                let { actors } = yield actors_1.getHost(request.params.ip);
+                let systeminfo = yield systeminfo_1.getSystemInfo(request.params.ip);
+                return { actors, systeminfo };
             }),
             config: {
                 auth: 'yahweh'

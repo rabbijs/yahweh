@@ -28,56 +28,60 @@
       </tbody>
     </table>
   </div>
+  {{#if host.mem}}
 
-  <div class='row'>
-    <h3>System Resources</h3>
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="col">Stat</th>
-          <th scope="col">Total Used</th>
-          <th scope="col">Total Available</th>
-          <th scope="col">% Use</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Disk</td>
-          <td>{{host.disk.used}}</td>
-          <td>{{host.disk.size}}</td>
-          <td>{{host.disk.percent_used}} %</td>
-        </tr>
-        <tr>
-          <td>Memory</td>
-          <td>{{host.mem.used}}</td>
-          <td>{{host.mem.total}}</td>
-          <td>{{host.mem.percent_used}} %</td>
-        </tr>
-
-      </tbody>
-    </table>
-  </div>
-
-  <div class='row'>
-    <h3>Containers</h3>
-    <table class="table table-dark">
-      <thead>
-        <tr>
-          <th scope="col">Docker Image</th>
-          <th scope="col">Container Name</th>
-          <th scope="col">Command</th>
-          <th scope="col">State</th>
-        </tr>
-      </thead>
-      <tbody>
-        {{#each host.docker as |container|}}
+    <div class='row'>
+      <h3>System Resources</h3>
+      <table class="table table-dark">
+        <thead>
           <tr>
-            <td>{{container.image}}</td>
-            <td>{{container.name}}</td>
-            <td>{{container.command}}</td>
-            <td>{{container.state}}</td>
+            <th scope="col">Stat</th>
+            <th scope="col">Total Used</th>
+            <th scope="col">Total Available</th>
+            <th scope="col">% Use</th>
           </tr>
-        {{/each}}
-      </tbody>
-    </table>
-  </div>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Disk</td>
+            <td>{{host.disk.used}}</td>
+            <td>{{host.disk.size}}</td>
+            <td>{{host.disk.percent_used}} %</td>
+          </tr>
+          <tr>
+            <td>Memory</td>
+            <td>{{host.mem.used}}</td>
+            <td>{{host.mem.total}}</td>
+            <td>{{host.mem.percent_used}} %</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  {{/if}}
+
+  {{#if host.docker}}
+    <div class='row'>
+      <h3>Containers</h3>
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Docker Image</th>
+            <th scope="col">Container Name</th>
+            <th scope="col">Command</th>
+            <th scope="col">State</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each host.docker as |container|}}
+            <tr>
+              <td>{{container.image}}</td>
+              <td>{{container.name}}</td>
+              <td>{{container.command}}</td>
+              <td>{{container.state}}</td>
+            </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  {{/if}}

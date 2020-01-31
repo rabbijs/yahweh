@@ -54,6 +54,15 @@ function actorHeartbeat(actorHeartbeatEvent) {
     });
 }
 exports.actorHeartbeat = actorHeartbeat;
+function getHost(ip) {
+    return __awaiter(this, void 0, void 0, function* () {
+        return {
+            ip,
+            actors: Object.values(hosts[ip])
+        };
+    });
+}
+exports.getHost = getHost;
 function listHosts() {
     return __awaiter(this, void 0, void 0, function* () {
         return Object.keys(hosts).map(ip => {

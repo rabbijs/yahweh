@@ -28,6 +28,10 @@ export default Ember.Route.extend({
 
     controller.set('hosts', model.hosts.map(host => {
 
+      if (!host.mem) {
+        return host; 
+      }
+
       let mem = Object.assign(host.mem, {
         percent_used: ((parseInt(host.mem.used) / parseInt(host.mem.total)) * 100).toFixed(2)
       })
