@@ -3,7 +3,7 @@ h1, h2, h3, h4, h5, h6, p, ul, li, a, b {
   margin:0 auto;
 }
 
-h3 {
+h2, h3, h4 {
   margin: 1em;
 }
 

@@ -6,7 +6,7 @@ module.exports = function(environment) {
     modulePrefix: 'yahweh-admin',
     environment,
     rootURL: '/',
-    locationType: 'auto',
+    locationType: 'hash',
     apiEndpoint: 'https://yahweh.anypayinc.com',
     EmberENV: {
       FEATURES: {
