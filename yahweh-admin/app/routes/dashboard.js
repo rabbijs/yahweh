@@ -18,7 +18,7 @@ export default Ember.Route.extend({
     };
     return Ember.$.ajax({
       method: 'GET',
-      url: `${config.apiEndpoint}/api/hosts`,
+      url: `/api/hosts`,
       headers: headers
     });
   },
