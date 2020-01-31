@@ -1,0 +1,21 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:10
+        environment:
+          JOBS: 1
+    steps:
+      - checkout
+
+      - setup_remote_docker
+      - run:
+          name: Build docker image
+          command: docker build -t rabbijs/yahweh:$CIRCLE_BRANCH .
+
+      - add_ssh_keys
+
+      - deploy:
+          command: |
+            ./push_to_docker.sh
+
